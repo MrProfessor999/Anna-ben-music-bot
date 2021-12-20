@@ -3,7 +3,21 @@ import random
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from pyrogram import Client, filters
 
-
+HOME_BUTTONS = InlineKeyboardMarkup(
+        [[
+        InlineKeyboardButton('ᴄʜᴀɴɴᴇʟ', url='https://t.me/team_annaben'),
+        InlineKeyboardButton('sᴜᴘᴘᴏʀᴛ', url='https://t.me/Annaben_support')
+    ],
+    [
+        InlineKeyboardButton('ᴍᴏʀᴇ ʙᴏᴛs', url='https://t.me/tg_bots_updates'),
+        InlineKeyboardButton('ᴅᴇᴠ', url='https://t.me/lallu_tg')
+    ],
+    [
+        InlineKeyboardButton('ʜᴇʟᴘ', callback_data='help')
+      ]
+   ]
+)
+        
 
 HOME_TEXT = "👋🏻 **Hi [{}](tg://user?id={})**,\n\nI'm 𝐀𝐍𝐍𝐀 𝐁𝐄𝐍 ** \n  𝙸 𝚊𝚖 𝚊 𝚖𝚞𝚜𝚒𝚌 𝚋𝚘𝚝 𝚊𝚗𝚍 𝚢𝚝 𝚟𝚒𝚍𝚎𝚘 𝚍𝚘𝚠𝚗𝚕𝚘𝚊𝚍𝚎𝚛 𝚋𝚘𝚝 𝙸 𝚊𝚖 𝚊 𝙿𝚞𝚋𝚕𝚒𝚌 𝙱𝚘𝚝 𝚞 𝚊𝚍𝚍 𝚖𝚎 𝚝𝚘 𝚢𝚘𝚞𝚛 𝚐𝚛𝚘𝚙𝚞 𝚊𝚗𝚍 𝚖𝚊𝚔𝚎 𝚖𝚎 𝚊𝚗 𝚊𝚍𝚖𝚒𝚗 𝚝𝚑𝚎𝚛𝚎 ❤️ 𝐵𝑦 @Lallu_tg!"
 HELP = """🏷️ **Need Help?** 🤔
@@ -37,25 +51,15 @@ __(Join @RX_BOTZ For Support)__
 
 @Client.on_message(filters.command('start'))
 async def start(client, message):
-    buttons = [
-        [
-        InlineKeyboardButton('ᴄʜᴀɴɴᴇʟ', url='https://t.me/team_annaben'),
-        InlineKeyboardButton('sᴜᴘᴘᴏʀᴛ', url='https://t.me/Annaben_support')
-    ],
-    [
-        InlineKeyboardButton('ᴍᴏʀᴇ ʙᴏᴛs', url='https://t.me/tg_bots_updates'),
-        InlineKeyboardButton('ᴅᴇᴠ', url='https://t.me/lallu_tg')
-    ],
-    [
-        InlineKeyboardButton('ʜᴇʟᴘ', callback_data='help')
-        
-    ]
-    ]
-    reply_markup = InlineKeyboardMarkup(buttons)
-    await message.reply_photo("https://telegra.ph/file/5649d8111f0a45039e282.jpg")
-    await message.reply(HOME_TEXT.format(message.from_user.first_name, message.from_user.id), reply_markup=reply_markup)
-
+        await message.reply_photo(
+        photo="https://telegra.ph/file/a9522ca5294a086a5dbe8.jpg",
+        caption=HOME_TEXT.format(message.from_user.first_name, message.from_user.id),            
+        reply_markup=HOME_BUTTONS
+    )
+    
 
 @Client.on_message(filters.command("help"))
 async def help(client, message):
-    await message.reply_text(HELP)
+    await update.reply_photo(
+        photo="https://telegra.ph/file/a9522ca5294a086a5dbe8.jpg",
+        caption=HELP.format(message.from_user.first_name, message.from_user.id),
